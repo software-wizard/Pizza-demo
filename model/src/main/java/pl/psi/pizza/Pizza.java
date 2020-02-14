@@ -5,12 +5,36 @@ import java.util.List;
 
 public class Pizza {
 
+    public enum PizzaNames {
+        MARGERITTA("Margeritta"),
+        MARINARA("Marinara"),
+        NAPOLETANA("Napoleońska"),
+        HAWAJSKA("Hawajska"),
+        FUNGHI("Funghi"),
+        QUATRO("Quatro"),
+        CAPRICCIOSA("Capricciosa"),
+        DINAMITE("Dynamit");
+
+
+        private String name;
+        PizzaNames(String aName) {
+            name = aName;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+    }
+
     private final String name;
     private final List<Addition> additives;
+    private final AbstractPizzaFactory.PizzaPieType pieType;
 
-    public Pizza(PizzaNames aName) {
-        name = aName.getName();
+    public Pizza(String aName, AbstractPizzaFactory.PizzaPieType aPieType) {
+        name = aName;
         additives = new ArrayList<>();
+        pieType = aPieType;
     }
 
     void addStandardAddition(Addition aAddition){
@@ -18,10 +42,14 @@ public class Pizza {
     }
 
     public double getCost() {
-        return 10.0 + additives.stream().mapToDouble(Addition::getCost).sum();
+        return pieType.getCost() + additives.stream().mapToDouble(Addition::getCost).sum();
     }
 
     public String getName() {
-        return name + " na cienkim cieście";
+        if (pieType.equals(AbstractPizzaFactory.PizzaPieType.ITALIAN)){
+            return name + " na cienkim cieście";
+        }else {
+            return name + " na grubym cieście";
+        }
     }
 }
