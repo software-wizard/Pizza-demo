@@ -6,7 +6,7 @@ public enum PizzaNames {
     NAPOLETANA("Napoleońska"),
     HAWAJSKA("Hawajska"),
     FUNGHI("Funghi"),
-    QUATRO("Cztery sery"),
+    QUATRO("Quatro"),
     CAPRICCIOSA("Capricciosa"),
     DINAMITE("Dynamit");
 
