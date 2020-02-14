@@ -7,8 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItalianPizzaFactoryTest {
 
     @Test
-    void test(){
-        assertEquals(1,1);
+    void shouldPrepareCorrectPizza(){
+        ItalianPizzaFactory factory = new ItalianPizzaFactory();
+
+        Pizza ret = factory.createPizza(PizzaNames.MARGERITTA);
+
+        assertEquals(13.50, ret.getCost());
+        assertEquals("Margeritta na cienkim cieście" , ret.getName());
     }
 
 }
