@@ -1,6 +1,6 @@
 package pl.psi.pizza;
 
-public class ItalianPizzaFactory extends AbstractPizzaFactory{
+class ItalianPizzaFactory extends AbstractPizzaFactory{
 
     @Override
     protected Pizza createPizzaInstance(String aName) {

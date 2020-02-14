@@ -8,7 +8,7 @@ class ItalianPizzaFactoryTest {
 
     @Test
     void shouldPrepareCorrectPizza(){
-        AbstractPizzaFactory factory = new ItalianPizzaFactory();
+        AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
 
         Pizza ret = factory.createPizza(Pizza.PizzaNames.MARGERITTA);
         assertEquals(13.50, ret.getCost());

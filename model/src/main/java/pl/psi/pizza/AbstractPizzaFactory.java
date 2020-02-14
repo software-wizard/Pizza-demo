@@ -17,6 +17,15 @@ public abstract class AbstractPizzaFactory {
         }
     };
 
+    public static AbstractPizzaFactory getFactory(PizzaPieType aType){
+        if (aType.equals(PizzaPieType.ITALIAN)){
+            return new ItalianPizzaFactory();
+        }
+        else {
+            return new AmericanPizzaFactory();
+        }
+    }
+
     public Pizza createPizza(Pizza.PizzaNames aPizza){
         final Pizza pizza= createPizzaInstance(aPizza.getName());
         switch (aPizza){
