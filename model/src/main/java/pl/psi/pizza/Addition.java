@@ -6,7 +6,7 @@ public enum Addition {
     GARLIC("czosnek", 0.90),
     CHAMPIGNON("pieczarki", 1.10),
     PINEAPPLE ("ananas", 1.40),
-    MOZZERELLA ("mozzerella", 1.50),
+    MOZZARELLA("mozzarella", 1.50),
     SALAMI ("salami", 1.60),
     ARTICHOCKE("karczoch", 1.70),
     CORN ("kukurydza", 1.90),

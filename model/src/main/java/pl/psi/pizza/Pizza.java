@@ -31,7 +31,7 @@ public class Pizza {
     private final List<Addition> additives;
     private final AbstractPizzaFactory.PizzaPieType pieType;
 
-    public Pizza(String aName, AbstractPizzaFactory.PizzaPieType aPieType) {
+    Pizza(String aName, AbstractPizzaFactory.PizzaPieType aPieType) {
         name = aName;
         additives = new ArrayList<>();
         pieType = aPieType;
@@ -51,5 +51,9 @@ public class Pizza {
         }else {
             return name + " na grubym cieście";
         }
+    }
+
+    public String getAdditivesForMenu() {
+        return additives.toString();
     }
 }
