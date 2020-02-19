@@ -2,6 +2,7 @@ package pl.psi.pizza;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Pizza {
 
@@ -54,6 +55,6 @@ public class Pizza {
     }
 
     public String getAdditivesForMenu() {
-        return additives.toString();
+        return additives.stream().map(Addition::getName).collect(Collectors.joining(", "));
     }
 }

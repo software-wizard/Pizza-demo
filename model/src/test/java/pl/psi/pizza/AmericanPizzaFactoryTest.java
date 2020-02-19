@@ -38,7 +38,7 @@ class AmericanPizzaFactoryTest {
         ret = factory.createPizza(Pizza.PizzaNames.QUATRO);
         assertEquals(20.20, ret.getCost());
         assertEquals("Quatro na grubym cieście" , ret.getName());
-        assertEquals("sos pomidorowy, mozzarella, karczoch, papryka, szynka, " , ret.getAdditivesForMenu());
+        assertEquals("sos pomidorowy, mozzarella, karczoch, papryka, szynka" , ret.getAdditivesForMenu());
 
         ret = factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA);
         assertEquals(18.80, ret.getCost());
