@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Pizza {
-
     public enum PizzaNames {
         MARGERITTA("Margeritta"),
         MARINARA("Marinara"),
@@ -31,10 +30,12 @@ public class Pizza {
     private final String name;
     private final List<Addition> additives;
     private final AbstractPizzaFactory.PizzaPieType pieType;
+    private final List<Addition> customerAdditives;
 
     Pizza(String aName, AbstractPizzaFactory.PizzaPieType aPieType) {
         name = aName;
         additives = new ArrayList<>();
+        customerAdditives = new ArrayList<>();
         pieType = aPieType;
     }
 
@@ -43,7 +44,7 @@ public class Pizza {
     }
 
     public double getCost() {
-        return pieType.getCost() + additives.stream().mapToDouble(Addition::getCost).sum();
+        return pieType.getCost() + additives.stream().mapToDouble(Addition::getCost).sum() + customerAdditives.stream().mapToDouble(Addition::getCost).sum();
     }
 
     public String getName() {
@@ -52,6 +53,10 @@ public class Pizza {
         }else {
             return name + " na grubym cieście";
         }
+    }
+
+    public void addCustomerAddition(Addition aAddition) {
+        customerAdditives.add(aAddition);
     }
 
     public String getAdditivesForMenu() {

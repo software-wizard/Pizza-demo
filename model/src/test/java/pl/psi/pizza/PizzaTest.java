@@ -11,7 +11,7 @@ class PizzaTest {
         AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
         Pizza pizza = factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA);
 
-        pizza.addAddition(Addition.PEPPER);
+        pizza.addCustomerAddition(Addition.PEPPER);
 
         assertEquals(17.6,pizza.getCost());
     }
