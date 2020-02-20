@@ -13,6 +13,17 @@ class PizzaTest {
 
         pizza.addCustomerAddition(Addition.PEPPER);
 
-        assertEquals(17.6,pizza.getCost());
+        assertEquals(19.7,pizza.getCost());
+    }
+
+    @Test
+    void shouldCreatePizzaNameCorrectlyAfterAddAddition(){
+        AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
+        Pizza pizza = factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA);
+
+        pizza.addCustomerAddition(Addition.PEPPER);
+        pizza.addCustomerAddition(Addition.BECON);
+
+        assertEquals("Capricciosa na grubym cieście. Dodatkowo: papryka, bekon", pizza.getName());
     }
 }
