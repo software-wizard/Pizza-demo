@@ -20,9 +20,19 @@ public enum Delivery implements OrderItemIf{
         return deliveryCost;
     }
 
-    public String getName() {
+    public String getName(){
+        return districtName;
+    }
+
+    public String getFullName() {
         return "Dostawa dzielnica: " + districtName;
     }
+
+    @Override
+    public String getDescription() {
+        return null;
+    }
+
 }
 
 

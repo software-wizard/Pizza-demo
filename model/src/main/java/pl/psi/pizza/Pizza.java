@@ -50,7 +50,11 @@ public class Pizza implements OrderItemIf {
         return Math.round(cost * 100.0) / 100.0;
     }
 
-    public String getName() {
+    public String getName(){
+        return name;
+    }
+
+    public String getFullName() {
         StringBuilder sb = new StringBuilder(name);
         if (pieType.equals(AbstractPizzaFactory.PizzaPieType.ITALIAN)){
             sb.append(" na cienkim cieście");
@@ -69,7 +73,7 @@ public class Pizza implements OrderItemIf {
         customerAdditives.add(aAddition);
     }
 
-    public String getAdditivesForMenu() {
+    public String getDescription() {
         return additives.stream().map(Addition::getName).collect(Collectors.joining(", "));
     }
 }

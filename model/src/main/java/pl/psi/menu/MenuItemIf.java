@@ -1,5 +1,7 @@
 package pl.psi.menu;
 
-public interface MenuItemIf {
+import pl.psi.order.OrderItemIf;
+
+public interface MenuItemIf{
     String getMenuDisplayText();
 }
