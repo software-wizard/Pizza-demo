@@ -48,11 +48,18 @@ public class Pizza {
     }
 
     public String getName() {
+        StringBuilder sb = new StringBuilder(name);
         if (pieType.equals(AbstractPizzaFactory.PizzaPieType.ITALIAN)){
-            return name + " na cienkim cieście";
+            sb.append(" na cienkim cieście");
         }else {
-            return name + " na grubym cieście";
+            sb.append(" na grubym cieście");
         }
+        if (!customerAdditives.isEmpty()){
+            sb.append(". Dodatkowo: ");
+            sb.append(customerAdditives.stream().map(Addition::getName).collect(Collectors.joining(", ")));
+        }
+
+        return sb.toString();
     }
 
     public void addCustomerAddition(Addition aAddition) {

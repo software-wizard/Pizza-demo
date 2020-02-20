@@ -24,6 +24,6 @@ class PizzaTest {
         pizza.addCustomerAddition(Addition.PEPPER);
         pizza.addCustomerAddition(Addition.BECON);
 
-        assertEquals("Capricciosa na grubym cieście. Dodatkowo: papryka, bekon", pizza.getName());
+        assertEquals("Capricciosa na cienkim cieście. Dodatkowo: papryka, bekon", pizza.getName());
     }
 }
