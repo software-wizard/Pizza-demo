@@ -19,6 +19,17 @@ class OrderTest {
     }
 
     @Test
+    void shouldCalculateOrderCostCorrectlyAfterStudentDiscount(){
+        AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
+        Order order = new Order();
+        order.addItem(factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA));
+        order.addItem(factory.createPizza(Pizza.PizzaNames.DINAMITE));
+        order = new StudentDiscountOrderDecorator(order);
+
+        assertEquals(25.52, order.calculateOrderCost());
+    }
+
+    @Test
     void shouldCalculateOrderCostCorrectlyAfterAddDelivery(){
         AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
         Order order = new Order();
@@ -27,5 +38,17 @@ class OrderTest {
         order.addItem(Delivery.GRUNWALD);
 
         assertEquals(35.90, order.calculateOrderCost());
+    }
+
+    @Test
+    void shouldCalculateOrderCostCorrectlyAfterAddDeliveryAndStudentDiscount(){
+        AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
+        Order order = new Order();
+        order.addItem(factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA));
+        order.addItem(factory.createPizza(Pizza.PizzaNames.DINAMITE));
+        order.addItem(Delivery.GRUNWALD);
+        order = new StudentDiscountOrderDecorator(order);
+
+        assertEquals(28.72, order.calculateOrderCost());
     }
 }
