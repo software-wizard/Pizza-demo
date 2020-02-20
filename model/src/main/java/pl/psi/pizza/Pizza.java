@@ -1,10 +1,12 @@
 package pl.psi.pizza;
 
+import pl.psi.order.OrderItemIf;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Pizza {
+public class Pizza implements OrderItemIf {
     public enum PizzaNames {
         MARGERITTA("Margeritta"),
         MARINARA("Marinara"),
@@ -44,7 +46,8 @@ public class Pizza {
     }
 
     public double getCost() {
-        return pieType.getCost() + additives.stream().mapToDouble(Addition::getCost).sum() + customerAdditives.stream().mapToDouble(Addition::getCost).sum();
+        double cost = pieType.getCost() + additives.stream().mapToDouble(Addition::getCost).sum() + customerAdditives.stream().mapToDouble(Addition::getCost).sum();
+        return Math.round(cost * 100.0) / 100.0;
     }
 
     public String getName() {

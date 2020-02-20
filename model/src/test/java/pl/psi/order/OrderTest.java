@@ -17,4 +17,15 @@ class OrderTest {
 
         assertEquals(31.90, order.calculateOrderCost());
     }
+
+    @Test
+    void shouldCalculateOrderCostCorrectlyAfterAddDelivery(){
+        AbstractPizzaFactory factory = AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN);
+        Order order = new Order();
+        order.addItem(factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA));
+        order.addItem(factory.createPizza(Pizza.PizzaNames.DINAMITE));
+        order.addItem(Delivery.GRUNWALD);
+
+        assertEquals(35.90, order.calculateOrderCost());
+    }
 }

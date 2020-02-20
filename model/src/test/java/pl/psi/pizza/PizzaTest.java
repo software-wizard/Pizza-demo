@@ -12,6 +12,7 @@ class PizzaTest {
         Pizza pizza = factory.createPizza(Pizza.PizzaNames.CAPRICCIOSA);
 
         pizza.addCustomerAddition(Addition.PEPPER);
+        pizza.addCustomerAddition(Addition.BECON);
 
         assertEquals(19.7,pizza.getCost());
     }
