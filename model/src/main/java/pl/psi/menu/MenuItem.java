@@ -6,7 +6,7 @@ public class MenuItem implements MenuItemIf {
 
     private final OrderItemIf item;
 
-    public MenuItem(OrderItemIf aItem) {
+    MenuItem(OrderItemIf aItem) {
         item = aItem;
     }
 
