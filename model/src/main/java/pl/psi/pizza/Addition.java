@@ -1,6 +1,8 @@
 package pl.psi.pizza;
 
-public enum Addition {
+import pl.psi.order.OrderItemIf;
+
+public enum Addition implements OrderItemIf {
 
     PEPPER("papryka", 0.80),
     GARLIC("czosnek", 0.90),
@@ -29,7 +31,17 @@ public enum Addition {
         return cost;
     }
 
+    @Override
+    public String getFullName() {
+        return "";
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return "";
     }
 }

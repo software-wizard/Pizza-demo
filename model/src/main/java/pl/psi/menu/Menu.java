@@ -3,7 +3,7 @@ package pl.psi.menu;
 import java.util.Iterator;
 import java.util.List;
 
-public class Menu {
+class Menu {
 
     private final String name;
     private List<MenuItemIf> menuItems;
