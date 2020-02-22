@@ -10,9 +10,9 @@
 	<packaging>pom</packaging>
 	
 	<modules>
+		<module>model</module>
 		<module>gui</module>
 		<module>console</module>
-        <module>model</module>
 	</modules>
 
     <properties>
