@@ -21,7 +21,7 @@ public class MenuItem implements MenuItemIf {
             sb.append(".");
         }
         sb.append(String.format("%.2f",item.getCost()));
-        if (!item.getDescription().isEmpty()){
+        if (item.getDescription() !=null && !item.getDescription().isEmpty()){
             sb.append( System.lineSeparator() );
             sb.append(item.getDescription());
         }

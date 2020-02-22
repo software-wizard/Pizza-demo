@@ -1,6 +1,7 @@
 package pl.psi.menu;
 
 import org.junit.jupiter.api.Test;
+import pl.psi.order.Delivery;
 import pl.psi.pizza.AbstractPizzaFactory;
 import pl.psi.pizza.Addition;
 import pl.psi.pizza.Pizza;
@@ -47,6 +48,17 @@ class MenuFactoryTest {
         String expected = "papryka............................................................0.80";
 
         Menu menu = factory.create("DODATKI", Arrays.asList(Addition.values()));
+        MenuItemIf firstMenuItem = menu.getItemsIterator().next();
+
+        assertEquals(expected,firstMenuItem.getMenuDisplayText());
+    }
+
+    @Test
+    void checkFirstMenuItemFromDeliveryMenu(){
+        MenuFactory factory = new MenuFactory();
+        String expected = "Grunwald...........................................................4.00";
+
+        Menu menu = factory.create("DOSTAWA", Arrays.asList(Delivery.values()));
         MenuItemIf firstMenuItem = menu.getItemsIterator().next();
 
         assertEquals(expected,firstMenuItem.getMenuDisplayText());
