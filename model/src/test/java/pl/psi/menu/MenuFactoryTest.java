@@ -1,12 +1,6 @@
 package pl.psi.menu;
 
 import org.junit.jupiter.api.Test;
-import pl.psi.order.Delivery;
-import pl.psi.pizza.AbstractPizzaFactory;
-import pl.psi.pizza.Addition;
-import pl.psi.pizza.Pizza;
-
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +14,8 @@ class MenuFactoryTest {
         sb.append(System.lineSeparator());
         sb.append("sos pomidorowy, mozzarella");
         String expected = sb.toString();
+        Menu menu = MenuFactory.createMenu(MenuFactory.ITALIAN_PIZZA);
 
-        Menu menu = factory.create("PIZZA NA CIENKIM", AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.ITALIAN), Arrays.asList(Pizza.PizzaNames.values()));
         MenuItemIf firstMenuItem = menu.getItemsIterator().next();
 
         assertEquals(expected,firstMenuItem.getMenuDisplayText());
@@ -29,14 +23,13 @@ class MenuFactoryTest {
 
     @Test
     void checkFirstMenuItemInAmericanMenu(){
-        MenuFactory factory = new MenuFactory();
         StringBuilder sb = new StringBuilder();
         sb.append("Margeritta........................................................15.50");
         sb.append(System.lineSeparator());
         sb.append("sos pomidorowy, mozzarella");
         String expected = sb.toString();
+        Menu menu = MenuFactory.createMenu(MenuFactory.AMERICAN_PIZZA);
 
-        Menu menu = factory.create("PIZZA NA GRUBYM", AbstractPizzaFactory.getFactory(AbstractPizzaFactory.PizzaPieType.AMERICAN), Arrays.asList(Pizza.PizzaNames.values()));
         MenuItemIf firstMenuItem = menu.getItemsIterator().next();
 
         assertEquals(expected,firstMenuItem.getMenuDisplayText());
@@ -44,10 +37,9 @@ class MenuFactoryTest {
 
     @Test
     void checkFirstMenuItemFromAdditionalMenu(){
-        MenuFactory factory = new MenuFactory();
         String expected = "papryka............................................................0.80";
+        Menu menu = MenuFactory.createMenu(MenuFactory.ADDITIONAL);
 
-        Menu menu = factory.create("DODATKI", Arrays.asList(Addition.values()));
         MenuItemIf firstMenuItem = menu.getItemsIterator().next();
 
         assertEquals(expected,firstMenuItem.getMenuDisplayText());
@@ -55,10 +47,9 @@ class MenuFactoryTest {
 
     @Test
     void checkFirstMenuItemFromDeliveryMenu(){
-        MenuFactory factory = new MenuFactory();
         String expected = "Grunwald...........................................................4.00";
+        Menu menu = MenuFactory.createMenu(MenuFactory.DELIVERY);
 
-        Menu menu = factory.create("DOSTAWA", Arrays.asList(Delivery.values()));
         MenuItemIf firstMenuItem = menu.getItemsIterator().next();
 
         assertEquals(expected,firstMenuItem.getMenuDisplayText());

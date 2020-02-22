@@ -2,7 +2,7 @@ package pl.psi.menu;
 
 import pl.psi.order.OrderItemIf;
 
-public class MenuItem implements MenuItemIf {
+class MenuItem implements MenuItemIf {
 
     private final OrderItemIf item;
 
