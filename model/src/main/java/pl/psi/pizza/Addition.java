@@ -44,4 +44,9 @@ public enum Addition implements OrderItemIf {
     public String getDescription() {
         return "";
     }
+
+    @Override
+    public String getExtendedMenuName() {
+        return null;
+    }
 }

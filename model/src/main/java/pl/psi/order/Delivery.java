@@ -33,6 +33,11 @@ public enum Delivery implements OrderItemIf{
         return null;
     }
 
+    @Override
+    public String getExtendedMenuName() {
+        return null;
+    }
+
 }
 
 

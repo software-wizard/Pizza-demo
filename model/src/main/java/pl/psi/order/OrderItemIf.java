@@ -6,4 +6,5 @@ public interface OrderItemIf {
     String getFullName();
     String getName();
     String getDescription();
+    String getExtendedMenuName();
 }

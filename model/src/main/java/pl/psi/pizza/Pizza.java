@@ -1,5 +1,6 @@
 package pl.psi.pizza;
 
+import pl.psi.menu.MenuFactory;
 import pl.psi.order.OrderItemIf;
 
 import java.util.ArrayList;
@@ -75,5 +76,10 @@ public class Pizza implements OrderItemIf {
 
     public String getDescription() {
         return additives.stream().map(Addition::getName).collect(Collectors.joining(", "));
+    }
+
+    @Override
+    public String getExtendedMenuName() {
+        return MenuFactory.ADDITIONAL;
     }
 }
