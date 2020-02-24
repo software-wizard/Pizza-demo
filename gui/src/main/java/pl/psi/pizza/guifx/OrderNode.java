@@ -15,5 +15,7 @@ public class OrderNode extends VBox {
         this.order.getItems().forEach(i ->
                 getChildren().add(new Label(i.getFullName() + ", " + i.getCost()))
         );
+
+        getChildren().add(new Label("W sumie: " + order.calculateOrderCost()));
     }
 }

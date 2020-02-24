@@ -11,6 +11,7 @@ import pl.psi.order.Order;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class MainController {
     @FXML
@@ -19,6 +20,7 @@ public class MainController {
     private Pane menuChooserWrapper;
     @FXML
     private Pane menuWrapper;
+    private Runnable refreshGuiFunction = (this::refreshGui);
 
     private Order order = new Order();
     private Map<String,String> menusMap = new HashMap<>(){{
@@ -29,12 +31,16 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        refreshOrder();
+        refreshGui();
         initMenuChooser();
     }
 
+    private void refreshGui() {
+        refreshOrder();
+    }
+
     private void refreshOrder() {
-        order = new Order();
+        orderWrapper.getChildren().clear();
         orderWrapper.getChildren().add(new OrderNode(order));
     }
 
@@ -54,7 +60,7 @@ public class MainController {
         menuWrapper.getChildren().clear();
         Iterator<MenuItemIf> iterator = menu.getItemsIterator();
         while (iterator.hasNext()){
-            menuWrapper.getChildren().add(new MenuItemNode(iterator.next(),order));
+            menuWrapper.getChildren().add(new MenuItemNode(iterator.next(), order, refreshGuiFunction));
         }
     }
 }
