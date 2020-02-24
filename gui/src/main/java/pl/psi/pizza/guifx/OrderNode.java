@@ -30,6 +30,7 @@ public class OrderNode extends VBox {
                             dialog.initModality(Modality.APPLICATION_MODAL);
                             dialog.showAndWait();
                             VBox pane = new VBox();
+                            pane.getChildren().add(MenuNode(new PizzaOrderAdapter(i)));
                             dialog.setScene(new Scene(pane, 50, 50));
                         });
                         hbox.getChildren().add(button);
