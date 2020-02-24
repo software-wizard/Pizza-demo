@@ -16,8 +16,8 @@
 
     <center>
         <VBox>
-            <HBox fx:id="MenuChooserWrapper"></HBox>
-            <VBox fx:id="MenuWrapper"></VBox>
+            <HBox fx:id="menuChooserWrapper"></HBox>
+            <VBox fx:id="menuWrapper"></VBox>
         </VBox>
     </center>
 

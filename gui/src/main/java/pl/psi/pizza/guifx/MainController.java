@@ -3,71 +3,52 @@ package pl.psi.pizza.guifx;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import pl.psi.menu.Menu;
 import pl.psi.menu.MenuFactory;
-import pl.psi.pizza.model.AmericanPiePizzaMenu;
-import pl.psi.pizza.model.ItalianPiePizzaMenu;
+import pl.psi.menu.MenuItemIf;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class MainController {
     @FXML
     private Pane orderWrapper;
     @FXML
-    private Pane MenuChooserWrapper;
+    private Pane menuChooserWrapper;
     @FXML
-    private Pane MenuWrapper;
+    private Pane menuWrapper;
 
-    private Menu currentMenu;
+    private Map<String,String> menusMap = new HashMap<>(){{
+        put("Piza na cienkim", MenuFactory.ITALIAN_PIZZA);
+        put("Pizza na grubym", MenuFactory.AMERICAN_PIZZA);
+        put("Dostawa", MenuFactory.DELIVERY);
+    }};
 
     @FXML
     private void initialize() {
-        orderWrapper.getChildren().add(new Label ("orderWrapper"));
-        orderWrapper.getChildren().add(new Label ("orderWrapper2"));
+        orderWrapper.getChildren().add(new Label ("ORDER"));
 
         initMenuChooser();
-
-        MenuWrapper.getChildren().add(new Label ("MenuWrapper"));
-        MenuWrapper.getChildren().add(new Label ("MenuWrapper2"));
-
-        refreshMenu();
     }
 
     private void initMenuChooser() {
-        List<Menu> menus = new ArrayList<Menu>();
-        menus.add(MenuFactory.createMenu(MenuFactory.ADDITIONAL));
-        menus.add(MenuFactory.createMenu(MenuFactory.ITALIAN_PIZZA));
-        menus.add(MenuFactory.createMenu(MenuFactory.AMERICAN_PIZZA));
-        switch ()
-        MenuChooserWrapper.getChildren().add(new Label ("MenuChooserWrapper"));
-        ToggleGroup x = new ToggleGroup();
-        RadioButton a = new RadioButton(MenuFactory.ADDITIONAL);
-        a.setToggleGroup(x);
-        a.addEventFilter();
-        RadioButton b = new RadioButton(MenuFactory.ITALIAN_PIZZA);
-        b.setToggleGroup(x);
-        MenuChooserWrapper.getChildren().add(a);
-        MenuChooserWrapper.getChildren().add(b);
+        ComboBox<String> menuTypeCombo = new ComboBox<>();
+        menuTypeCombo.getItems().addAll(menusMap.keySet());
 
+        menuTypeCombo.valueProperty().addListener((aObs, aOld, aNew) -> {
+            refreshMenu(MenuFactory.createMenu(menusMap.get(aNew)));
+        });
 
+        menuTypeCombo.setValue("Piza na cienkim");
+        menuChooserWrapper.getChildren().add(menuTypeCombo);
     }
 
-    private void refreshMenu(){
-//        w zależności od klika wziac odpowiednie menu z fabryki
-//        centerBox.getChildren().clear();
-//        String selectedRationText = ((RadioButton) pieGroup.getSelectedToggle()).getText();
-//        if ("Na cienkim".equals(selectedRationText)) {
-//            ItalianPiePizzaMenu italianMenu = new ItalianPiePizzaMenu();
-//            for (String pizza: italianMenu.getPizzasList() ) {
-//                centerBox.getChildren().add(new PizzaEntry(pizza));
-//            }
-//        } else if ("Na grubym".equals(selectedRationText)) {
-//            AmericanPiePizzaMenu americanMenu = new AmericanPiePizzaMenu();
-//            for (String pizza: americanMenu.getPizzasList() ) {
-//                centerBox.getChildren().add(new PizzaEntry(pizza));
-//            }
-//        }
+    private void refreshMenu(Menu menu){
+        menuWrapper.getChildren().clear();
+        Iterator<MenuItemIf> iterator = menu.getItemsIterator();
+        while (iterator.hasNext()){
+            menuWrapper.getChildren().add(new MenuItemNode(iterator.next()));
+        }
     }
 }
