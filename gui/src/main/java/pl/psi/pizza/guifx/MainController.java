@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import pl.psi.menu.Menu;
 import pl.psi.menu.MenuFactory;
 import pl.psi.menu.MenuItemIf;
+import pl.psi.order.Order;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ public class MainController {
     @FXML
     private Pane menuWrapper;
 
+    private Order order = new Order();
     private Map<String,String> menusMap = new HashMap<>(){{
         put("Piza na cienkim", MenuFactory.ITALIAN_PIZZA);
         put("Pizza na grubym", MenuFactory.AMERICAN_PIZZA);
@@ -27,9 +29,13 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        orderWrapper.getChildren().add(new Label ("ORDER"));
-
+        refreshOrder();
         initMenuChooser();
+    }
+
+    private void refreshOrder() {
+        order = new Order();
+        orderWrapper.getChildren().add(new OrderNode(order));
     }
 
     private void initMenuChooser() {
@@ -48,7 +54,7 @@ public class MainController {
         menuWrapper.getChildren().clear();
         Iterator<MenuItemIf> iterator = menu.getItemsIterator();
         while (iterator.hasNext()){
-            menuWrapper.getChildren().add(new MenuItemNode(iterator.next()));
+            menuWrapper.getChildren().add(new MenuItemNode(iterator.next(),order));
         }
     }
 }

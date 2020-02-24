@@ -4,17 +4,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import pl.psi.menu.MenuItemIf;
+import pl.psi.order.Order;
 
 public class MenuItemNode extends HBox {
 
     private final MenuItemIf menuItem;
 
-    MenuItemNode(MenuItemIf aMenuItem){
+    MenuItemNode(MenuItemIf aMenuItem, Order order){
         menuItem = aMenuItem;
         getChildren().add(new Label(menuItem.getMenuDisplayText()));
         Button button = new Button("+");
         getChildren().add(button);
 
-        button.setOnAction( (e)->{System.out.println(menuItem.getMenuDisplayText());});
+        button.setOnAction( (e)-> menuItem.addToOrder(order) );
     }
 }

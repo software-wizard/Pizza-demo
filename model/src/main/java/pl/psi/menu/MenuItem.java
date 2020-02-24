@@ -1,5 +1,6 @@
 package pl.psi.menu;
 
+import pl.psi.order.Order;
 import pl.psi.order.OrderItemIf;
 
 class MenuItem implements MenuItemIf {
@@ -26,6 +27,11 @@ class MenuItem implements MenuItemIf {
             sb.append(item.getDescription());
         }
         return sb.toString();
+    }
+
+    @Override
+    public void addToOrder(Order aOrder) {
+        aOrder.addItem(item);
     }
 
 }
