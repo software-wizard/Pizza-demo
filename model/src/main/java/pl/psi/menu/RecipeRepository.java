@@ -8,6 +8,7 @@ public class RecipeRepository {
 
     public RecipeRepository() {
         repository.add(new PizzaMenu("Pizza"));
+        repository.add(new DrinkMenu());
     }
 
     public List<Menu> getMenus() {
