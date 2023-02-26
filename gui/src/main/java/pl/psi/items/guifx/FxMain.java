@@ -1,4 +1,4 @@
-package pl.psi.pizza.guifx;
+package pl.psi.items.guifx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

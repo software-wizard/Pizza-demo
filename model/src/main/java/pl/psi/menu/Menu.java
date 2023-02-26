@@ -1,7 +1,8 @@
-package pl.psi.pizza;
+package pl.psi.menu;
 
 import com.google.common.collect.Multimap;
 import lombok.Getter;
+import pl.psi.items.Item;
 
 public interface Menu {
     enum Size {

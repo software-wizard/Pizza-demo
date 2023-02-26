@@ -1,4 +1,4 @@
-package pl.psi.pizza.guifx;
+package pl.psi.items.guifx;
 
 import com.google.common.collect.Multimap;
 import javafx.fxml.FXML;
@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.psi.items.Item;
+import pl.psi.menu.RecipeRepository;
+import pl.psi.items.ingredients.IngredientRepository;
+import pl.psi.menu.Menu;
 import pl.psi.orders.OrderEngine;
-import pl.psi.pizza.Menu;
-import pl.psi.pizza.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -113,28 +115,30 @@ public class MainController implements PropertyChangeListener {
             apLeft.getChildren().add(name);
 
             oneItemBox.getChildren().add(new Label(item.getCost()));
-            Button personalizeButton = new Button("Personalizuj");
-            personalizeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> openPersonalizeView(item));
-            oneItemBox.getChildren().add(personalizeButton);
+            if (!item.allAddons().isEmpty()) {
+                Button personalizeButton = new Button("Personalizuj");
+                personalizeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> openPersonalizeView(item));
+                oneItemBox.getChildren().add(personalizeButton);
+            }
             return oneItemBox;
         }).collect(Collectors.toList());
     }
 
     private void openPersonalizeView(Item aItem) {
         VBox mainPane = new VBox();
-        List<Ingredient> ingredients = IngredientRepository.getIngredients(aItem.getSize());
-        ingredients.forEach(ingredient -> {
+
+        aItem.allAddons().forEach(ingredient -> {
             HBox oneItemBox = new HBox();
             AnchorPane apLeft = new AnchorPane();
             oneItemBox.getChildren().add(apLeft);
             HBox.setHgrow(apLeft, Priority.ALWAYS);
             oneItemBox.getChildren().add(new Label(ingredient.getName()));
-            Button ingredientButton = new Button(ingredient.getCost().toString());
-            ingredientButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            Button addonButton = new Button(ingredient.getCost().toString());
+            addonButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                 aItem.addSpecial(ingredient);
                 propertyChange(null);
             });
-            oneItemBox.getChildren().add(ingredientButton);
+            oneItemBox.getChildren().add(addonButton);
             mainPane.getChildren().add(oneItemBox);
         });
 

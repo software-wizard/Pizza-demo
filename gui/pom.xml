@@ -28,7 +28,7 @@
                             <options>
                                 <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000</option>
                             </options>
-                            <mainClass>pl.psi.pizza.guifx.FxMain</mainClass>
+                            <mainClass>pl.psi.items.guifx.FxMain</mainClass>
                         </configuration>
                     </execution>
                 </executions>

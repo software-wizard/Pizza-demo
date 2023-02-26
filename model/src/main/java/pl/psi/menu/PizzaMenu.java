@@ -1,19 +1,24 @@
-package pl.psi.pizza;
+package pl.psi.menu;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import lombok.Getter;
+import pl.psi.items.Item;
+import pl.psi.items.Pizza;
+import pl.psi.items.ingredients.Addon;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static pl.psi.pizza.IngredientEnum.*;
-import static pl.psi.pizza.PizzaMenu.Name.*;
+import static pl.psi.items.ingredients.IngredientEnum.*;
+import static pl.psi.menu.PizzaMenu.Name.*;
 
 @Getter
 public class PizzaMenu implements Menu {
 
-    enum Name {
+    public enum Name {
         MARGERITTA("Margaritta"),
         MARINARA("Marinara"),
         NAPOLETANA("Napoleońska"),
@@ -34,7 +39,7 @@ public class PizzaMenu implements Menu {
     private final String menuName;
     private Multimap<String, Item> items = ArrayListMultimap.create();
 
-    PizzaMenu(String aMenuName) {
+    public PizzaMenu(String aMenuName) {
         menuName = aMenuName;
         items.put("", new PizzaMenuHeader(Size.S));
         items.put("", new PizzaMenuHeader(Size.M));
@@ -52,19 +57,26 @@ public class PizzaMenu implements Menu {
     public Pizza createPizza(Name aName, Size aSize) {
         switch (aName) {
             case MARGERITTA:
-                return Pizza.builder().name(MARGERITTA.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA)).build();
+                return new Pizza(MARGERITTA.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA));
             case MARINARA:
-                return Pizza.builder().name(MARINARA.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, GARLIC)).build();
+                return new Pizza(MARINARA.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, GARLIC));
             case NAPOLETANA:
-                return Pizza.builder().name(NAPOLETANA.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, BLACK_OIL)).build();
+                return new Pizza(NAPOLETANA.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, BLACK_OIL));
             case HAWAJSKA:
-                return Pizza.builder().name(HAWAJSKA.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, HAM, PINEAPPLE)).build();
+                return new Pizza(HAWAJSKA.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, HAM, PINEAPPLE));
             case FUNGHI:
-                return Pizza.builder().name(FUNGHI.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, CHAMPIGNON)).build();
+                return new Pizza(FUNGHI.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, CHAMPIGNON));
             case CAPRICCIOSA:
-                return Pizza.builder().name(CAPRICCIOSA.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, HAM, CHAMPIGNON)).build();
+                return new Pizza(CAPRICCIOSA.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, HAM, CHAMPIGNON));
             case DINAMITE:
-                return Pizza.builder().name(DINAMITE.getName()).size(aSize).ingredients(List.of(TOMATO_SAUSE, MOZZARELLA, SALAMI)).build();
+                return new Pizza(DINAMITE.getName(), aSize, List.of(TOMATO_SAUSE,
+                        MOZZARELLA, SALAMI));
             default:
                 throw new IllegalArgumentException("Unrecognized pizza :(" + aName + ")");
         }
@@ -108,6 +120,16 @@ public class PizzaMenu implements Menu {
         @Override
         public Item copy() {
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Collection<Addon> getAddons() {
+            return new ArrayList<>();
+        }
+
+        @Override
+        public Collection<Addon> allAddons() {
+            return new ArrayList<>();
         }
 
         @Override

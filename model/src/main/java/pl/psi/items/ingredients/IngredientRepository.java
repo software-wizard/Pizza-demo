@@ -1,4 +1,6 @@
-package pl.psi.pizza;
+package pl.psi.items.ingredients;
+
+import pl.psi.menu.Menu;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -37,11 +39,11 @@ public class IngredientRepository {
         return Ingredient.builder().name(aLine[0]).size(aSize).cost(BigDecimal.valueOf(Double.parseDouble(aLine[aSize.getColumnNumber()]))).build();
     }
 
-    static Ingredient getIngredient(IngredientEnum ingredientEnum, Menu.Size aSize) {
+    public static Ingredient getIngredient(IngredientEnum ingredientEnum, Menu.Size aSize) {
         return ingredients.stream().filter(ingredient -> ingredient.getSize().equals(aSize) && ingredient.getName().equals(ingredientEnum.getName())).findAny().orElseThrow();
     }
 
-    public static List<Ingredient> getIngredients(Menu.Size aSize) {
+    public static List<Addon> getIngredients(Menu.Size aSize) {
         return ingredients.stream().filter(ingredient -> ingredient.getSize().equals(aSize)).collect(Collectors.toList());
     }
 }

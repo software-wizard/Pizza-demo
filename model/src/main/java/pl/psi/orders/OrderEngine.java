@@ -1,6 +1,6 @@
 package pl.psi.orders;
 
-import pl.psi.pizza.Item;
+import pl.psi.items.Item;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

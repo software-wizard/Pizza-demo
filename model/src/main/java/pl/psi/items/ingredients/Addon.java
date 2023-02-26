@@ -1,4 +1,4 @@
-package pl.psi.pizza;
+package pl.psi.items.ingredients;
 
 import java.math.BigDecimal;
 

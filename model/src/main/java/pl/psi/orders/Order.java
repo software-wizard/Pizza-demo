@@ -1,7 +1,7 @@
 package pl.psi.orders;
 
 import lombok.Getter;
-import pl.psi.pizza.Item;
+import pl.psi.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
